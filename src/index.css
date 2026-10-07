@@ -1,0 +1,72 @@
+@import 'tailwindcss';
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('./assets/fonts/inter.woff2') format('woff2');
+}
+
+/* modo escuro controlado pela classe .dark no <html> (ver lib/tema.ts) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Cores que mudam entre claro e escuro */
+:root {
+  --fundo: #f8fafc;
+  --cartao: #ffffff;
+  --borda: #e2e8f0;
+  --texto: #0f172a;
+  --suave: #64748b;
+  --menu: #0f172a;
+  color-scheme: light;
+}
+.dark {
+  --fundo: #0f172a;
+  --cartao: #1e293b;
+  --borda: #334155;
+  --texto: #f8fafc;
+  --suave: #94a3b8;
+  --menu: #020617; /* um tom mais escuro que o fundo, para o menu se destacar */
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-fundo: var(--fundo);
+  --color-cartao: var(--cartao);
+  --color-borda: var(--borda);
+  --color-texto: var(--texto);
+  --color-suave: var(--suave);
+  --color-menu: var(--menu);
+}
+
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  /* cor principal: botões, links, destaques */
+  --color-primaria: #2563eb;
+  --color-primaria-forte: #1d4ed8;
+  --color-marinho: #0f172a;
+
+  /* cores com significado fixo — usar SÓ para isso */
+  --color-positivo: #10b981; /* pago / subiu */
+  --color-negativo: #ef4444; /* cancelado / caiu */
+  --color-pendente: #f59e0b; /* pendente */
+
+  --radius-cartao: 12px;
+}
+
+body {
+  background: var(--fundo);
+  color: var(--texto);
+  font-variant-numeric: tabular-nums;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* entrada suave dos avisos ("Produto salvo") */
+@keyframes surgir {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
